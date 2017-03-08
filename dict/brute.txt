@@ -1,0 +1,10 @@
+1.zip
+2.zip
+1.rar
+.index.[EXT]
+index.[EXT]
+index.[EXT].bak
+index2.[EXT]
+1.[EXT]
+2.[EXT]
+phpinfo.php
