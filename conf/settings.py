@@ -27,5 +27,6 @@ ROOT_PATH = dirname(dirname(abspath(__file__)))
 
 LOG_OPPOSITE_PATH = 'log'
 LOG_PATH = join(ROOT_PATH, LOG_OPPOSITE_PATH)
+
 DICT_OPPOSITE_PATH = 'dict'
 DICT_PATH = join(ROOT_PATH, DICT_OPPOSITE_PATH)

@@ -19,3 +19,5 @@ _new
 .7z
 .old
 .new
+.swo
+.swp

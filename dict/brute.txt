@@ -1,3 +1,6 @@
+robots.txt
+.svn
+.git
 1.zip
 2.zip
 1.rar
@@ -7,4 +10,15 @@ index.[EXT].bak
 index2.[EXT]
 1.[EXT]
 2.[EXT]
+test.[EXT]
 phpinfo.php
+admin
+admin2
+manage
+manager
+admin888
+admin666
+dede
+admin.[EXT]
+manage.[EXT]
+manager.[EXT]

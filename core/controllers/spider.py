@@ -20,8 +20,8 @@ from core.data import fuzz_urls
 logger = logging.getLogger('webdirfuzz')
 
 class Spider(Req):
-    def __init__(self, site, timeout, delay, depth, threads):
-        super(Spider, self).__init__(site, timeout, delay, threads)
+    def __init__(self, site, timeout, delay, cookie, depth, threads):
+        super(Spider, self).__init__(site, timeout, delay, cookie, threads)
         self.depth = depth
         self.visited = []
         self.tasks_queue = PriorityQueue()

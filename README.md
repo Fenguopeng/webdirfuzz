@@ -1,6 +1,6 @@
 # webdirfuzz
 基于爬虫的web目录fuzz工具
-
+![](https://ws1.sinaimg.cn/large/9b7c67c1ly1fdfoqhqtz7j20o90gfq3w)
 ## Feature
 - Generate the fuzzing vectors based on crawler results
 - Support brute scan mode and could custom stuffix

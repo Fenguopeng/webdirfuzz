@@ -22,6 +22,8 @@ def parse():
                         help='File to output result(only TXT)')
     parser.add_argument('--delay', dest='delay', type=int, default=0,
                         help='Delay in seconds between each HTTP request(default 0)')
+    parser.add_argument('--cookie', dest='cookie', type=str, default='',
+                        help='Add Cookie with HTTP request ')
     parser.add_argument('--timeout', dest='timeout', type=int, default=5,
                         help='HTTP request timeout(default 5)')
     parser.add_argument('-V', '--version', action='version', version=VERSION_INFO)

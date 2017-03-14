@@ -13,7 +13,7 @@ from urlparse import urlparse
 logger = logging.getLogger('webdirfuzz')
 
 class Req(object):
-    def __init__(self, site, timeout, delay, threads):
+    def __init__(self, site, timeout, delay, cookie, threads):
         self.site = site if site.find('://') != -1 else 'http://%s' % site
         self.site_parse = urlparse(self.site)
         self.timeout = timeout
@@ -24,6 +24,7 @@ class Req(object):
             'Referer': 'http://www.google.com',
             'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
             'Cache-Control': 'no-cache',
+			'Cookie': cookie,
         }
         self._analysis_404()
 
@@ -39,8 +40,7 @@ class Req(object):
             r = conn.getresponse()
             logger.info('%s %s' % (url, r.status))
             time.sleep(self.delay)
-        #except (httplib.HTTPException, socket.timeout, socket.gaierror, ), e:3
-        except Exception, e:
+        except (httplib.HTTPException, socket.timeout, socket.gaierror, Exception), e:
             logger.error('url %s is unreachable, Exception %s %s' % (url, e.__class__.__name__, e))
             print 'url %s is unreachable, Exception %s %s' % (url.encode('utf-8'), e.__class__.__name__, e)
             pass
@@ -55,7 +55,7 @@ class Req(object):
             conn1.request('GET', self.site_parse[2]+'/../g0ogle/go0g1e/l.php', headers=self.headers)
             response = conn1.getresponse()
             self.not_found_page_length = response.getheader('Content-Length')
-        except (httplib.HTTPException, socket.timeout, socket.gaierror), e:
+        except (httplib.HTTPException, socket.timeout, socket.gaierror, Exception), e:
             logger.error('url %s is unreachable, Exception %s %s' % (self.site, e.__class__.__name__, e))
             print 'url %s is unreachable, Exception %s %s' % (self.site, e.__class__.__name__, e)
             sys.exit(1)

@@ -13,7 +13,7 @@ from core.controllers.brutescan import BruteScan
 from core.output.output_txt import OutputTxt
 from comm.log import init_logger
 
-from core.data import result
+import os
 
 logger = logging.getLogger('webdirfuzz')
 
@@ -24,6 +24,10 @@ def complate(output_file):
     OutputTxt(output_file).save()
     logger.info('complete!')
 
+def init():
+    if not os.path.exists(settings.LOG_PATH):
+        os.makedirs(settings.LOG_PATH)
+
 def start(args):
     target = args.target
     timeout = args.timeout
@@ -33,15 +37,17 @@ def start(args):
     is_brute = args.brute
     ext = args.ext
     output = args.output
+    cookie = args.cookie
 
     target = init_target(target)
     domain_type = get_domain_type(target)
     if domain_type in settings.ALLOW_INPUTS:
         # 初始化
+        init()
         init_logger(log_file_path=settings.LOG_PATH + '/' + get_host(target) + '.log')
-        spider = Spider(target, timeout, delay, depth, thread_num)
-        fuzz = FuzzFileScan(target, timeout, delay, thread_num)
-        brute = BruteScan(target, timeout, delay, thread_num, ext)
+        spider = Spider(target, timeout, delay, cookie, depth, thread_num)
+        fuzz = FuzzFileScan(target, timeout, delay, cookie, thread_num)
+        brute = BruteScan(target, timeout, delay, cookie, thread_num, ext)
         print '[%s] Scan Tartget: %s' % (time.strftime('%H:%M:%S'), target)
         if not is_brute:
             spider.start()

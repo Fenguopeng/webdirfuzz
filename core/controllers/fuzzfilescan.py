@@ -13,8 +13,8 @@ from core.data import fuzz_urls
 from Queue import Empty
 
 class FuzzFileScan(Req):
-    def __init__(self, site, timeout, delay, threads):
-        super(FuzzFileScan, self).__init__(site, timeout, delay, threads)
+    def __init__(self, site, timeout, delay, cookie, threads):
+        super(FuzzFileScan, self).__init__(site, timeout, delay, cookie, threads)
         self.fuzzed_urls = []
         self.test_urls = []
 

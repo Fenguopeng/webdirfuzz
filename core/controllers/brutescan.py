@@ -14,8 +14,8 @@ class BruteScan(Req):
     """
     暴力字典扫描并对存在的URL再次进行fuzz
     """
-    def __init__(self, site, timeout, delay, threads, ext):
-        super(BruteScan, self).__init__(site, timeout, delay, threads)
+    def __init__(self, site, timeout, delay, cookie, threads, ext):
+        super(BruteScan, self).__init__(site, timeout, delay, cookie, threads)
         self.to_brute_urls = []
         self.bruted_urls = []
         self.ext = ext
