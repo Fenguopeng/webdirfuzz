@@ -17,4 +17,4 @@ man
 node_modules
 sdist
 venv
-.idea/*
+.idea/
