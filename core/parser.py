@@ -8,9 +8,12 @@ from conf.settings import VERSION
 VERSION_INFO = 'Version: %s' % VERSION
 def parse():
     parser = argparse.ArgumentParser()
-    parser.add_argument('target', type=str,
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument('-t', '--target', dest='target',
                         help='The target site to be scanned')
-    parser.add_argument('-t', '--thread', dest='thread', type=int, default=1,
+    group.add_argument('-update', '--update', dest='update', action='store_true', default=False,
+                        help='update from github automaticly')
+    parser.add_argument('-thread', '--thread', dest='thread', type=int, default=1,
                         help='Max number of concurrent HTTP requests (default 1)')
     parser.add_argument('-d', '--depth', dest='depth', type=int, default=1,
                         help='depth for spider(default 3)')

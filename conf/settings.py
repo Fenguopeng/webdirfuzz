@@ -2,7 +2,7 @@
 # coding=utf-8
 
 import os
-VERSION = 'v1.0'
+VERSION = 'v1.1'
 
 START_STR = r'''
                         _          _  _         __

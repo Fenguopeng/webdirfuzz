@@ -12,6 +12,7 @@ from core.controllers.fuzzfilescan import FuzzFileScan
 from core.controllers.brutescan import BruteScan
 from core.output.output_txt import OutputTxt
 from comm.log import init_logger
+from core.controllers import update
 
 import os
 
@@ -38,7 +39,9 @@ def start(args):
     ext = args.ext
     output = args.output
     cookie = args.cookie
+    is_update = args.update
 
+    update.update(is_update)
     target = init_target(target)
     domain_type = get_domain_type(target)
     if domain_type in settings.ALLOW_INPUTS:
