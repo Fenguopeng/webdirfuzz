@@ -63,6 +63,8 @@ class Req(object):
     def get_is_vul(self, url):
         r = self.send_http(url)
         if r != 0 and r.status == 200 and r.getheader('content-length') != self.not_found_page_length:
+            self.pool.threadLock.acquire()
             print '[!] %s' % url.encode('utf-8')
+            self.pool.threadLock.release()
             return True
         return False

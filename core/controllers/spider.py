@@ -24,13 +24,20 @@ class Spider(Req):
         super(Spider, self).__init__(site, timeout, delay, cookie, threads)
         self.depth = depth
         self.visited = []
+        self.found = []
         self.tasks_queue = PriorityQueue()
 
     def get_page_content(self, url):
+        '''
+        获取网页源代码，如果content-type不是html，或者content-type>1M不读取内容
+        '''
         r = 0
         r = self.send_http(url)
         if r != 0 and r.status == 200 and r.getheader('content-length') != self.not_found_page_length:
+            self.pool.threadLock.acquire()
             print '[!]' + url.encode('utf-8')
+            self.pool.threadLock.release()
+            self.found.append(url)
             if r.getheader('content-type') or r.getheader('content-type').find('html') != 1:
                 return r.read()
             elif r.getheader('content-length') and int(r.getheader('content-length') < 102400):
@@ -106,5 +113,5 @@ class Spider(Req):
                 self.visited.append(url)
                 fuzz_urls.put(url)
         print '[%s] Stop Spider' % time.strftime('%H:%M:%S')
-        print '[%s] %s Founded' % (time.strftime('%H:%M:%S'), len(self.visited))
+        print '[%s] %s Founded' % (time.strftime('%H:%M:%S'), len(self.found))
         result.spider = self.visited

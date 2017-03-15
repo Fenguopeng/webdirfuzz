@@ -28,6 +28,7 @@ class ThreadPool(object):
     def __init__(self, thread_num):
         self.tasks = Queue()
         self.pool = []
+        self.threadLock = threading.Lock()
         self.__init__thread_pool(thread_num)
 
     def __init__thread_pool(self, thread_num):
