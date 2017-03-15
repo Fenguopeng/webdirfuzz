@@ -12,15 +12,16 @@ def parse():
     group.add_argument('-t', '--target', dest='target',
                         help='The target site to be scanned')
     group.add_argument('-update', '--update', dest='update', action='store_true', default=False,
-                        help='update from github automaticly')
+                        help='Update from github automaticly')
     parser.add_argument('-thread', '--thread', dest='thread', type=int, default=1,
                         help='Max number of concurrent HTTP requests (default 1)')
-    parser.add_argument('-d', '--depth', dest='depth', type=int, default=1,
-                        help='depth for spider(default 3)')
-    parser.add_argument('-b', dest='brute', action='store_true', default=False,
-                        help='just brute scan, others ignored')
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('-d', '--depth', dest='depth', type=int, default=3,
+                        help='Depth for spider(default 3)')
+    group.add_argument('-b', dest='brute', action='store_true', default=False,
+                        help='Just brute scan, others ignored')
     parser.add_argument('-e', '--ext', dest='ext', type=str, default='php',
-                        help='brute scan path extention(default php)')
+                        help='Brute scan path extention(default php)')
     parser.add_argument('-o', '--output', dest='output', type=str,
                         help='File to output result(only TXT)')
     parser.add_argument('--delay', dest='delay', type=int, default=0,
